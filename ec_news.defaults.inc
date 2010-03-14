@@ -157,6 +157,9 @@ function _ec_news_ctools_plugin_api() {
   if ($module == "feeds" && $api == "feeds_importer_default") {
     return array("version" => 1);
   }
+  else if ($module == "system" && $api == "strongarm") {
+    return array("version" => 1);
+  }
 }
 
 /**
@@ -225,5 +228,58 @@ function _ec_news_feeds_importer_default() {
   );
 
   $export['news'] = $feeds_importer;
+  return $export;
+}
+
+/**
+ * Helper to implementation of hook_strongarm().
+ */
+function _ec_news_strongarm() {
+  $export = array();
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_news';
+  $strongarm->value = '0';
+
+  $export['comment_news'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'comment_news_feed';
+  $strongarm->value = '0';
+
+  $export['comment_news_feed'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_news';
+  $strongarm->value = array(
+    '0' => 'status',
+    '1' => 'promote',
+  );
+
+  $export['node_options_news'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'node_options_news_feed';
+  $strongarm->value = array();
+
+  $export['node_options_news_feed'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_news_feed_pattern';
+  $strongarm->value = 'news-feed/[nid]';
+
+  $export['pathauto_node_news_feed_pattern'] = $strongarm;
+  $strongarm = new stdClass;
+  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
+  $strongarm->api_version = 1;
+  $strongarm->name = 'pathauto_node_news_pattern';
+  $strongarm->value = 'news/[nid]';
+
+  $export['pathauto_node_news_pattern'] = $strongarm;
   return $export;
 }

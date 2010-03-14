@@ -35,3 +35,12 @@ function ec_news_node_info() {
   $args = func_get_args();
   return call_user_func_array('_ec_news_node_info', $args);
 }
+
+/**
+ * Implementation of hook_strongarm().
+ */
+function ec_news_strongarm() {
+  module_load_include('inc', 'ec_news', 'ec_news.defaults');
+  $args = func_get_args();
+  return call_user_func_array('_ec_news_strongarm', $args);
+}
