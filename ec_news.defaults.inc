@@ -157,7 +157,7 @@ function _ec_news_ctools_plugin_api() {
   if ($module == "feeds" && $api == "feeds_importer_default") {
     return array("version" => 1);
   }
-  else if ($module == "system" && $api == "strongarm") {
+  else if ($module == "strongarm" && $api == "strongarm") {
     return array("version" => 1);
   }
 }
